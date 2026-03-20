@@ -3,3 +3,23 @@
     flex-direction: column;
     gap: 12px;
 }
+
+.ShopListPage-Footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+
+    padding: 4px 8px;
+}
+
+.ShopListPage-Footer .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aquamarine;
+}
