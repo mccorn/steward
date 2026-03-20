@@ -1,25 +1,28 @@
+// new, предложено нейронкой
+// {
+//   "compilerOptions": {
+//     "target": "ES2020",
+//     "module": "ESNext",
+//     "lib": ["ESNext", "DOM"],
+//     "strict": true,
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+//     "forceConsistentCasingInFileNames": true,
+
+//     "moduleResolution": "bundler",
+//     "allowSyntheticDefaultImports": true,
+//   },
+//   "include": ["src/**/*", "server/**/*"],
+//   "exclude": ["node_modules", "dist", ".next", ".vite"]
+// }
+
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
+    "composite": true,
     "skipLibCheck": true,
-
-    /* Bundler mode */
+    "module": "ESNext",
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "allowSyntheticDefaultImports": true,
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["vite.config.ts"]
 }

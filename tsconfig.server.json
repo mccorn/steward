@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "./dist/server",
+    "rootDir": "./server",
+    "lib": ["ES2020"],
+    "types": ["node"],
+    "moduleResolution": "nodenext"
+  },
+  "include": ["server/**/*"]
+}
