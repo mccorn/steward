@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json())
 
 const PATHS = {
-    shopList: path.join(process.cwd(), "/server/db/shop-list.json"),
+    shopList: path.join(process.cwd(), "/db/shop-list.json"),
 }
 
 const STORE = {
@@ -30,6 +30,12 @@ app.post("/shop-list", (req, res) => {
     if (action === 'delete') {
         STORE.shopList.list = STORE.shopList.list.filter(node => node.label !== payload)
         res.json(STORE.shopList)
+    } else if (action === 'update') {
+        let targetNode = STORE.shopList.list.filter(node => node.label === payload.label)[0]
+        if (targetNode) {
+            Object.assign(targetNode, payload)
+            res.json(STORE.shopList)
+        }
     } else if (action === 'create') {
         const label = payload.trim()
         if (label) STORE.shopList.list.push({ label })

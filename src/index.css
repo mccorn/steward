@@ -72,6 +72,13 @@ button:focus-visible {
   }
 }
 
-.flex {
+.flex {}
 
+.button {
+  transition: all 0.125s ease-in-out;
+  cursor: pointer;
+}
+
+.button:active {
+  opacity: 0.8;
 }

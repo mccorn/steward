@@ -1,0 +1,19 @@
+.ShopListItem {
+    background-color: #eeeeee;
+    width: 100%;
+    min-width: 120px;
+
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 8px;
+
+    padding: 4px 8px;
+}
+
+.ShopListItem__icon {
+    color: red;
+}
+
+.ShopListItem__icon:not(.active) {
+    filter: grayscale(1);
+}

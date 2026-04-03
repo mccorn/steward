@@ -1,13 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ShopListItem, { ShopListItemData } from "./ShopListItem";
 import "./ShopListPage.css"
+import { PageComponent } from "../../components/PageComponent";
 
 const data: ShopListItemData[] = [
   { label: "123" },
   { label: "456" },
 ];
 
-function ShopListPage() {
+export function ShopListPage() {
   const [data, setData] = useState<ShopListItemData[]>([])
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -25,6 +26,21 @@ function ShopListPage() {
       body: JSON.stringify({
         action: "delete",
         payload: label
+      })
+    })
+
+    promise.then(res => res.json()).then(data => setData(data.list))
+  }, [])
+
+  const handleUpdate = useCallback((node: ShopListItemData) => {
+    const promise = fetch("/api/shop-list", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        action: "update",
+        payload: { ...node, isHot: !node.isHot }
       })
     })
 
@@ -51,19 +67,16 @@ function ShopListPage() {
     promise.then(res => res.json()).then(data => setData(data.list))
   }, [])
 
+  const footerChildren = useMemo(() => <div className="ShopListPage-Footer">
+    <input ref={inputRef}></input>
+    <div className="button" onClick={handleCreate} style={{ width: 50, height: 40 }}>➕️</div>
+  </div>, [])
+
   return (
-    <>
+    <PageComponent footerProps={{ children: footerChildren }}>
       <div className="ShopListPage">
-        {data?.map((node, idx) => <ShopListItem data={node} key={node.id || idx} onRemove={handleRemove} />)}
+        {data?.map((node, idx) => <ShopListItem data={node} key={node.id || idx} onRemove={handleRemove} onUpdate={handleUpdate} />)}
       </div>
-
-      <div className="ShopListPage-Footer">
-        <input ref={inputRef}></input>
-        <div className="button" onClick={handleCreate} style={{ width: 50, height: 40 }}>➕️</div>
-      </div>
-
-    </>
+    </PageComponent>
   )
 }
-
-export default ShopListPage
