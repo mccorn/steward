@@ -1,0 +1,38 @@
+# Copy this file and a .env next to it onto the NAS.
+# Docker clones the git repo during build — you do not need a local checkout.
+#
+# .env example:
+#   STEWARD_TOKEN=change-me
+#   STEWARD_GIT_REPO=https://github.com/mccorn/steward.git
+#   STEWARD_GIT_REF=master
+# Private repo: use an HTTPS token in the URL or an SSH remote
+# that the Docker host already has keys for.
+
+services:
+  steward:
+    build:
+      context: ${STEWARD_GIT_REPO:-https://github.com/mccorn/steward.git}#${STEWARD_GIT_REF:-master}
+      dockerfile: Dockerfile
+    ports:
+      - "65080:65080"
+    environment:
+      NODE_ENV: production
+      PORT: "65080"
+      STEWARD_TOKEN: ${STEWARD_TOKEN}
+    volumes:
+      - steward-data:/app/db
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:65080/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  steward-data: {}

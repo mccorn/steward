@@ -8,6 +8,18 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      devOptions: { enabled: false },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        navigateFallback: 'index.html',
+        navigateFallbackDenylist: [/^\/api\//],
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.startsWith('/api/'),
+            handler: 'NetworkOnly',
+          },
+        ],
+      },
       manifest: {
         name: 'Steward: домашний помощник',
         short_name: 'Steward',
@@ -29,11 +41,12 @@ export default defineConfig({
     })
   ],
   server: {
+    host: "0.0.0.0",
+    port: 8000,
     proxy: {
       '/api': {
-        target: 'http://localhost:65080',
+        target: 'http://127.0.0.1:65080',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }

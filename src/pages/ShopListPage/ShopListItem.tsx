@@ -1,15 +1,15 @@
-import { ReactNode, useCallback } from "react"
+import { memo } from "react"
 import "./ShopListItem.css"
 
 type ShopListItemProps = {
     data: ShopListItemData,
-    onRemove: ((label: string) => void),
-    onUpdate: ((node: ShopListItemData) => void),
+    onRemove: (id: string) => void,
+    onUpdate: (id: string, isHot: boolean) => void,
 }
 
 export type ShopListItemData = {
     label: string,
-    id?: string | number,
+    id: string,
     isHot?: boolean,
 }
 
@@ -22,14 +22,16 @@ function ShopListItem({ data, onRemove, onUpdate }: ShopListItemProps) {
         <div
             className={"ShopListItem__icon button " + (data.isHot ? "active" : "")}
             style={{ textAlign: "center" }}
-            onClick={() => onUpdate({ ...data, isHot: data.isHot })}
+            onClick={() => onUpdate(data.id, !data.isHot)}
         >
             🔥
         </div>
-        <div style={{ textAlign: "center" }} onClick={() => onRemove(data.label)}>
+        <div className="button" style={{ textAlign: "center" }} onClick={() => onRemove(data.id)}>
             ❌
         </div>
     </div>
 }
 
-export default ShopListItem
+const MemoShopListItem = memo(ShopListItem)
+MemoShopListItem.displayName = "ShopListItem"
+export default MemoShopListItem

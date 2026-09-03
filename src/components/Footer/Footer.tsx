@@ -5,8 +5,6 @@ export interface FooterProps {
     children?: ReactNode,
 }
 
-export const Footer: FC<FooterProps> = ({children}) => <div className="Footer">
-    Footer
-
-    {children}
-</div>
+export const Footer: FC<FooterProps> = ({ children }) => (
+    <div className="Footer">{children}</div>
+)

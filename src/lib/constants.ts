@@ -1,0 +1,5 @@
+export const TOKEN_KEY = 'steward.token'
+export const STORE_KEY = 'steward.store'
+export const QUEUE_KEY = 'steward.queue'
+export const ACTIVE_LIST_KEY = 'steward.activeListId'
+export const DEV_TOKEN = 'dev-token'

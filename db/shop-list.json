@@ -1,1 +1,22 @@
-{"list":[{"label":"898","isHot":false},{"label":"100","isHot":false}]}
+{
+  "lists": [
+    {
+      "id": "4c0b8e3a-7d21-4e5a-9c1f-8a2b3c4d5e6f",
+      "name": "Покупки",
+      "parentId": null,
+      "display": "page",
+      "items": [
+        {
+          "id": "367c4b7b-a320-4154-b145-33b950b835b6",
+          "label": "1000",
+          "isHot": false
+        },
+        {
+          "id": "9655401a-fdf1-4518-929a-667ae82dca06",
+          "label": "1500",
+          "isHot": false
+        }
+      ]
+    }
+  ]
+}

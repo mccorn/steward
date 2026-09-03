@@ -8,8 +8,12 @@ interface PageComponentProps {
     footerProps?: FooterProps,
 }
 
-export const PageComponent: FC<PageComponentProps> = ({ children, footerProps = {}, headerProps = {} }) => <>
-    <Header {...headerProps} />
-    {children}
-    <Footer {...footerProps} />
-</>
+export const PageComponent: FC<PageComponentProps> = ({ children, footerProps = {}, headerProps = {} }) => (
+    <div className="PageComponent">
+        <Header {...headerProps} />
+        <div className="PageComponent-body">
+            {children}
+        </div>
+        <Footer {...footerProps} />
+    </div>
+)

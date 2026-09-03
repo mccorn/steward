@@ -2,19 +2,42 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    text-align: left;
+}
+
+.ShopListPage-empty {
+    opacity: 0.7;
+}
+
+.ShopListPage-nested {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid rgba(127, 127, 127, 0.35);
+    border-radius: 8px;
+}
+
+.ShopListPage-nested h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.ShopListPage-childLink {
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(127, 127, 127, 0.15);
 }
 
 .ShopListPage-Footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 8px;
+    width: 100%;
+}
 
-    padding: 4px 8px;
+.ShopListPage-Footer input {
+    min-width: 0;
 }
 
 .ShopListPage-Footer .button {
@@ -22,4 +45,5 @@
     align-items: center;
     justify-content: center;
     background-color: aquamarine;
+    color: #213547;
 }

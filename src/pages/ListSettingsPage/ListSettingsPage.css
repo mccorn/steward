@@ -1,0 +1,40 @@
+.ListSettingsPage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.ListSettingsPage label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ListSettingsPage input,
+.ListSettingsPage select {
+  padding: 8px;
+  font-size: 1rem;
+}
+
+.ListSettingsPage fieldset {
+  border: 1px solid rgba(127, 127, 127, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ListSettingsPage fieldset label {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.ListSettingsPage-error {
+  color: #c62828;
+}
+
+.ListSettingsPage-delete {
+  background: #c62828;
+  color: #fff;
+}

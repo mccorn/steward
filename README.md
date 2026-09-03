@@ -1,30 +1,26 @@
-# React + TypeScript + Vite
+# Steward
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Домашний список покупок: React-клиент и Express API. Данные живут в `db/shop-list.json`.
 
-Currently, two official plugins are available:
+## Домашний сервер
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Чтобы держать приложение на ноутбуке в LAN (для телефонов в доме), есть два пути: Docker и обычный запуск через терминал после `npm run build`. Пошагово — в [docs/home-server.md](docs/home-server.md).
 
-## Expanding the ESLint configuration
+## Разработка
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+cp .env.example .env
+npm install
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Клиент: http://localhost:8000  
+API: http://localhost:65080 (`/api/health`, `/api/state`)
+
+В dev без `.env` сервер принимает токен `dev-token`, клиент подставляет его сам. В production токен обязателен: `STEWARD_TOKEN` и экран ввода на клиенте.
+
+`npm run dev` включает React StrictMode — эффекты (включая fetch) срабатывают дважды. Это нормально. Лишние циклы проверяйте через `npm run build` и `node server/index.js` или Docker-образ, не через dev-сервер.
+
+## Оффлайн
+
+Оболочка кэшируется service worker (vite-plugin-pwa). Списки и очередь правок хранятся в `localStorage`. Без сети открывается последний снимок, его можно редактировать. В шапке статус: онлайн / оффлайн / синхронизация. `/api/*` в SW не кэшируется.

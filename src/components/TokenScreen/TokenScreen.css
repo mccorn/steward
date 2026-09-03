@@ -1,0 +1,19 @@
+.TokenScreen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+.TokenScreen input {
+  width: min(320px, 100%);
+  padding: 8px 12px;
+  font-size: 1rem;
+}
+
+.TokenScreen button {
+  width: min(320px, 100%);
+}

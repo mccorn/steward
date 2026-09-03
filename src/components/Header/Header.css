@@ -3,4 +3,57 @@
     left: 0;
     right: 0;
     top: 0;
+    z-index: 10;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px;
+    background: #1a1a1a;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.Header-title {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.Header-select {
+    flex: 1;
+    min-width: 0;
+    max-width: 220px;
+    height: 32px;
+}
+
+.Header-status {
+    font-size: 12px;
+    white-space: nowrap;
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+.Header-status--online {
+    background: #1b5e20;
+}
+
+.Header-status--offline {
+    background: #b71c1c;
+}
+
+.Header-status--syncing {
+    background: #e65100;
+}
+
+.Header-link {
+    color: inherit;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+@media (prefers-color-scheme: light) {
+    .Header {
+        background: #eeeeee;
+        color: #213547;
+    }
 }
